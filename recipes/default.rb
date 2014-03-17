@@ -14,11 +14,10 @@ bash 'Add the New Relic apt repository' do
   EOC
 end
 
-package 'newrelic-sysmond'
-# package "newrelic-sysmond" do
-#   options "--allow-unauthenticated"
-#   action :upgrade
-# end
+package "newrelic-sysmond" do
+  options "--allow-unauthenticated"
+  action :upgrade
+end
 
 directory "/var/run/newrelic" do
   owner "newrelic"

@@ -1,4 +1,4 @@
-name             "newrelic"
+name             "chef-newrelic"
 maintainer       "Dwwd Software Inc."
 maintainer_email "info@dwwd.ru"
 description      "Installs/Configures newrelic server monitoring"
