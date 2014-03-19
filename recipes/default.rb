@@ -5,13 +5,21 @@
 # Copyright 2014, Dwwd Software Inc.
 #
 
-bash 'Add the New Relic apt repository' do
-  user 'root'
-  code <<-EOC
-    echo deb http://apt.newrelic.com/debian/ newrelic non-free >> /etc/apt/sources.list.d/newrelic.list
-    wget -O- https://download.newrelic.com/#{node[:newrelic][:key_id]}.gpg | apt-key add -
-    apt-get update
-  EOC
+# bash 'Add the New Relic apt repository' do
+#   user 'root'
+#   code <<-EOC
+#     echo deb http://apt.newrelic.com/debian/ newrelic non-free >> /etc/apt/sources.list.d/newrelic.list
+#     wget -O- https://download.newrelic.com/#{node[:newrelic][:key_id]}.gpg | apt-key add -
+#     apt-get update
+#   EOC
+# end
+
+apt_repository 'newrelic' do
+  uri          'http://apt.newrelic.com/debian/'
+  distribution 'newrelic'
+  components   ['non-free']
+  key          "https://download.newrelic.com/#{node[:newrelic][:key_id]}.gpg"
+  action :add
 end
 
 package "newrelic-sysmond" do
